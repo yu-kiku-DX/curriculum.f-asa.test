@@ -157,12 +157,6 @@
       border: 1px solid rgba(191, 219, 254, 0.4);
     }
 
-    .hero-meta {
-      margin-top: 12px;
-      font-size: 0.75rem;
-      color: #dbeafe;
-    }
-
     main {
       padding: 0 16px 40px;
     }
@@ -282,49 +276,52 @@
       font-size: 0.75rem;
     }
 
-    .subgrid {
-      margin-top: 18px;
-    }
-
-    .subgrid h3 {
-      margin: 0 0 8px;
-      font-size: 0.95rem;
-    }
-
-    .subgrid-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-    }
-
-    .mini-card {
-      padding: 10px 12px;
+    /* 第5部：教科マトリクス */
+    .subject-matrix {
+      margin-top: 10px;
       border-radius: 12px;
+      background: #f8fafc;
+      padding: 8px 8px 6px;
       border: 1px dashed #cbd5f5;
-      background: #eff6ff;
-      font-size: 0.78rem;
+    }
+
+    .matrix-row {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
     }
 
-    .mini-card-title {
+    .matrix-row-label {
+      font-size: 0.75rem;
       font-weight: 600;
-      font-size: 0.8rem;
       color: #1d4ed8;
+      min-width: 70px;
+      padding-top: 4px;
     }
 
-    .mini-card-tags {
+    .matrix-row-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
 
-    .mini-tag {
-      font-size: 0.7rem;
-      padding: 1px 6px;
+    .matrix-btn {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 0.72rem;
       border-radius: 999px;
-      background: #dbeafe;
+      border: 1px solid #cbd5f5;
+      background: #ffffff;
+      color: #1f2933;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .matrix-btn:hover {
+      border-color: #2563eb;
+      color: #1d4ed8;
+      background: #eff6ff;
     }
 
     footer {
@@ -358,25 +355,6 @@
         font-size: 0.78rem;
         margin-bottom: 8px;
       }
-      .hero-stats {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-      }
-      .hero-stat-card {
-        border-radius: 14px;
-        background: rgba(15, 23, 42, 0.18);
-        padding: 10px 10px 8px;
-        font-size: 0.75rem;
-      }
-      .hero-stat-label {
-        color: #bfdbfe;
-        font-size: 0.72rem;
-      }
-      .hero-stat-value {
-        font-size: 0.9rem;
-        font-weight: 600;
-      }
     }
 
     @media (max-width: 600px) {
@@ -397,15 +375,14 @@
       <div class="hero-main">
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
-          教育課程 全体像
+          教育課程 全体構成
         </div>
         <h1 class="hero-title">
           北海道教育大学附属旭川小学校<br />
           教育課程ポータル
         </h1>
         <p class="hero-sub">
-          「よく見，よく聞き，よく思い」，心も体もたくましい主体的人間を育てるための
-          <strong>学校の“設計図”</strong>です。
+          本校の教育課程の全体像と，各部の構成を一覧できます。
         </p>
         <div class="hero-kv">
           3つの子ども像：思いやる子 ／ つくりだす子 ／ やりとげる子
@@ -422,31 +399,16 @@
         </div>
         <div class="hero-links">
           <span class="hero-link-chip">教育理念</span>
+          <span class="hero-link-chip">編成の方針</span>
           <span class="hero-link-chip">日課・授業時数</span>
-          <span class="hero-link-chip">学校経営方針</span>
-          <span class="hero-link-chip">年間指導計画</span>
-        </div>
-        <div class="hero-meta">
-          ※ 本ページは教育課程冊子（第1〜5章）および各教科資料をもとに構成しています。
+          <span class="hero-link-chip">学校経営</span>
+          <span class="hero-link-chip">教科別計画</span>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="hero-bubble">
-          まずは「どんな学校か」「どんな時間割か」を
-          <strong>カードから直感的に</strong>確認できます。
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat-card">
-            <div class="hero-stat-label">教育課程の柱</div>
-            <div class="hero-stat-value">5部構成</div>
-            <div>理念／編成／時数／経営／教科</div>
-          </div>
-          <div class="hero-stat-card">
-            <div class="hero-stat-label">主な利用者</div>
-            <div class="hero-stat-value">教員・学生・保護者</div>
-            <div>誰でも全体像を把握しやすく</div>
-          </div>
+          教育課程の構成を，カード形式で簡潔に確認できます。
         </div>
       </div>
     </div>
@@ -457,7 +419,7 @@
   <div class="main-inner" id="cards">
     <div class="section-heading">
       <h2>教育課程の全体構成</h2>
-      <p>知りたいテーマからカードをクリックして閲覧できます。</p>
+      <p>知りたいテーマのカードをクリックして詳細に進みます。</p>
     </div>
 
     <!-- メインカード 5枚 -->
@@ -470,7 +432,7 @@
             <div class="card-tag">理念・子ども像</div>
           </div>
           <div class="card-body">
-            学校の<strong>根っこの考え方</strong>と，育てたい子ども像・学校像をまとめています。
+            学校の<strong>基本方針</strong>と，育てたい子ども像・学校像をまとめています。
           </div>
           <div class="card-keywords">
             <span class="kw">総括目標</span>
@@ -525,7 +487,7 @@
           <div class="card-keywords">
             <span class="kw">年間授業日数</span>
             <span class="kw">週時数配当</span>
-            <span class="kw">行事と打切り</span>
+            <span class="kw">行事と時数</span>
           </div>
         </div>
         <div class="card-footer">
@@ -562,7 +524,7 @@
         </div>
       </article>
 
-      <!-- 第5部 -->
+      <!-- 第5部：教科別・領域別の指導計画 -->
       <article class="card" id="subjects">
         <div>
           <div class="card-header">
@@ -570,8 +532,48 @@
             <div class="card-tag">授業の計画</div>
           </div>
           <div class="card-body">
-            各教科の<strong>理論編・年間指導計画・単元構成</strong>をまとめています。
+            各教科の<strong>理論編</strong>と<strong>年間指導計画</strong>に，ここからアクセスできます。
           </div>
+
+          <div class="subject-matrix">
+            <div class="matrix-row">
+              <div class="matrix-row-label">理論編</div>
+              <div class="matrix-row-buttons">
+                <a href="#" class="matrix-btn">国語</a>
+                <a href="#" class="matrix-btn">社会</a>
+                <a href="#" class="matrix-btn">算数</a>
+                <a href="#" class="matrix-btn">理科</a>
+                <a href="#" class="matrix-btn">生活</a>
+                <a href="#" class="matrix-btn">音楽</a>
+                <a href="#" class="matrix-btn">図画工作</a>
+                <a href="#" class="matrix-btn">家庭</a>
+                <a href="#" class="matrix-btn">体育</a>
+                <a href="#" class="matrix-btn">外国語</a>
+                <a href="#" class="matrix-btn">道徳</a>
+                <a href="#" class="matrix-btn">チャレンジ</a>
+                <a href="#" class="matrix-btn">特別活動</a>
+              </div>
+            </div>
+            <div class="matrix-row">
+              <div class="matrix-row-label">年間指導計画</div>
+              <div class="matrix-row-buttons">
+                <a href="#" class="matrix-btn">国語</a>
+                <a href="#" class="matrix-btn">社会</a>
+                <a href="#" class="matrix-btn">算数</a>
+                <a href="#" class="matrix-btn">理科</a>
+                <a href="#" class="matrix-btn">生活</a>
+                <a href="#" class="matrix-btn">音楽</a>
+                <a href="#" class="matrix-btn">図画工作</a>
+                <a href="#" class="matrix-btn">家庭</a>
+                <a href="#" class="matrix-btn">体育</a>
+                <a href="#" class="matrix-btn">外国語</a>
+                <a href="#" class="matrix-btn">道徳</a>
+                <a href="#" class="matrix-btn">チャレンジ</a>
+                <a href="#" class="matrix-btn">特別活動</a>
+              </div>
+            </div>
+          </div>
+
           <div class="card-keywords">
             <span class="kw">国語〜外国語</span>
             <span class="kw">総合・道徳・特別活動</span>
@@ -579,79 +581,9 @@
           </div>
         </div>
         <div class="card-footer">
-          <a href="#" class="card-link">
-            教科別ページへ
-            <span>↗</span>
-          </a>
           <span class="card-counter">従来：理論編・年間計画</span>
         </div>
       </article>
-    </div>
-
-    <!-- サブグリッド：用途別の入口 -->
-    <div class="subgrid">
-      <h3>用途別のショートカット</h3>
-      <div class="subgrid-grid">
-        <div class="mini-card">
-          <div class="mini-card-title">新任・実習生向け</div>
-          <div>学校の全体像と授業づくりの考え方を，短時間で把握したい方向けの入口です。</div>
-          <div class="mini-card-tags">
-            <span class="mini-tag">第1部</span>
-            <span class="mini-tag">第2部</span>
-          </div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-card-title">時間割・行事を確認したい</div>
-          <div>年間授業時数や日課，行事と授業の関係を一覧で確認できます。</div>
-          <div class="mini-card-tags">
-            <span class="mini-tag">第3部</span>
-          </div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-card-title">今年度の重点を確認したい</div>
-          <div>学校経営方針と，今年度の重点項目を一覧で見たいときの入口です。</div>
-          <div class="mini-card-tags">
-            <span class="mini-tag">第4部</span>
-          </div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-card-title">授業づくりに使いたい</div>
-          <div>教科ごとの理論編・年間指導計画・単元一覧に直接アクセスできます。</div>
-          <div class="mini-card-tags">
-            <span class="mini-tag">第5部</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 資料ダウンロード -->
-    <div class="subgrid" id="downloads">
-      <h3>資料ダウンロード</h3>
-      <div class="subgrid-grid">
-        <div class="mini-card">
-          <div class="mini-card-title">教育課程 全体（PDF）</div>
-          <div>第1〜5部を一括して閲覧・印刷したいときに利用します。</div>
-          <div class="mini-card-tags">
-            <span class="mini-tag">冊子版</span>
-            <span class="mini-tag">PDF</span>
-          </div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-card-title">教科別資料（PDF）</div>
-          <div>各教科の理論編・年間指導計画などをダウンロードできます。</div>
-          <div class="mini-card-tags">
-            <span class="mini-tag">教科別</span>
-          </div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-card-title">年間行事・研究関連</div>
-          <div>年間行事計画や研究紀要など，学校全体の資料です。</div>
-          <div class="mini-card-tags">
-            <span class="mini-tag">行事</span>
-            <span class="mini-tag">研究</span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </main>
