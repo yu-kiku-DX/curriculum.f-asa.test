@@ -157,6 +157,20 @@
       border: 1px solid rgba(191, 219, 254, 0.4);
     }
 
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      justify-self: flex-end;
+    }
+
+    .hero-bubble {
+      background: rgba(15, 23, 42, 0.16);
+      border-radius: 16px;
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      margin-top: 8px;
+    }
+
     main {
       padding: 0 16px 40px;
     }
@@ -276,51 +290,97 @@
       font-size: 0.75rem;
     }
 
-    /* 第5部：教科マトリクス */
-    .subject-matrix {
-      margin-top: 10px;
-      border-radius: 12px;
-      background: #f8fafc;
-      padding: 8px 8px 6px;
-      border: 1px dashed #cbd5f5;
+    /* 第5部：大きな枠＋表 */
+    .block-5th {
+      margin-top: 24px;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
     }
 
-    .matrix-row {
+    .block-5th-header {
       display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 6px;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 8px;
     }
 
-    .matrix-row-label {
-      font-size: 0.75rem;
+    .block-5th-title {
+      font-size: 1rem;
       font-weight: 600;
-      color: #1d4ed8;
-      min-width: 70px;
-      padding-top: 4px;
+      color: #111827;
     }
 
-    .matrix-row-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .matrix-btn {
-      display: inline-block;
-      padding: 3px 8px;
-      font-size: 0.72rem;
+    .block-5th-tag {
+      font-size: 0.75rem;
+      padding: 2px 8px;
       border-radius: 999px;
-      border: 1px solid #cbd5f5;
-      background: #ffffff;
-      color: #1f2933;
-      text-decoration: none;
+      background: #e0e7ff;
+      color: #3730a3;
       white-space: nowrap;
     }
 
-    .matrix-btn:hover {
+    .block-5th-text {
+      font-size: 0.85rem;
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
+
+    .subject-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .subject-table {
+      border-collapse: collapse;
+      min-width: 720px;
+      font-size: 0.78rem;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+    }
+
+    .subject-table th,
+    .subject-table td {
+      border: 1px solid #e5e7eb;
+      padding: 6px 8px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .subject-table thead {
+      background: #e0ebff;
+    }
+
+    .subject-table th:first-child {
+      background: #eef2ff;
+      font-weight: 600;
+    }
+
+    .subject-table td:first-child {
+      background: #f3f4ff;
+      font-weight: 600;
+    }
+
+    .tbl-btn {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid #cbd5f5;
+      background: #ffffff;
+      text-decoration: none;
+      color: #1f2933;
+      font-size: 0.75rem;
+    }
+
+    .tbl-btn:hover {
       border-color: #2563eb;
-      color: #1d4ed8;
+      color: #2563eb;
       background: #eff6ff;
     }
 
@@ -342,18 +402,6 @@
         grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
         gap: 24px;
         align-items: center;
-      }
-      .hero-visual {
-        position: relative;
-        z-index: 1;
-        justify-self: flex-end;
-      }
-      .hero-bubble {
-        background: rgba(15, 23, 42, 0.16);
-        border-radius: 16px;
-        padding: 10px 12px;
-        font-size: 0.78rem;
-        margin-bottom: 8px;
       }
     }
 
@@ -408,7 +456,7 @@
 
       <div class="hero-visual">
         <div class="hero-bubble">
-          教育課程の構成を，カード形式で簡潔に確認できます。
+          教育課程の構成をカードと表で簡潔に確認できます。
         </div>
       </div>
     </div>
@@ -419,10 +467,10 @@
   <div class="main-inner" id="cards">
     <div class="section-heading">
       <h2>教育課程の全体構成</h2>
-      <p>知りたいテーマのカードをクリックして詳細に進みます。</p>
+      <p>知りたいテーマのカードから詳細に進みます。</p>
     </div>
 
-    <!-- メインカード 5枚 -->
+    <!-- メインカード：第1〜4部 -->
     <div class="card-grid">
       <!-- 第1部 -->
       <article class="card" id="philosophy">
@@ -523,68 +571,76 @@
           <span class="card-counter">旧：第3章・第5章</span>
         </div>
       </article>
-
-      <!-- 第5部：教科別・領域別の指導計画 -->
-      <article class="card" id="subjects">
-        <div>
-          <div class="card-header">
-            <div class="card-title">第5部　教科別・領域別の指導計画</div>
-            <div class="card-tag">授業の計画</div>
-          </div>
-          <div class="card-body">
-            各教科の<strong>理論編</strong>と<strong>年間指導計画</strong>に，ここからアクセスできます。
-          </div>
-
-          <div class="subject-matrix">
-            <div class="matrix-row">
-              <div class="matrix-row-label">理論編</div>
-              <div class="matrix-row-buttons">
-                <a href="#" class="matrix-btn">国語</a>
-                <a href="#" class="matrix-btn">社会</a>
-                <a href="#" class="matrix-btn">算数</a>
-                <a href="#" class="matrix-btn">理科</a>
-                <a href="#" class="matrix-btn">生活</a>
-                <a href="#" class="matrix-btn">音楽</a>
-                <a href="#" class="matrix-btn">図画工作</a>
-                <a href="#" class="matrix-btn">家庭</a>
-                <a href="#" class="matrix-btn">体育</a>
-                <a href="#" class="matrix-btn">外国語</a>
-                <a href="#" class="matrix-btn">道徳</a>
-                <a href="#" class="matrix-btn">チャレンジ</a>
-                <a href="#" class="matrix-btn">特別活動</a>
-              </div>
-            </div>
-            <div class="matrix-row">
-              <div class="matrix-row-label">年間指導計画</div>
-              <div class="matrix-row-buttons">
-                <a href="#" class="matrix-btn">国語</a>
-                <a href="#" class="matrix-btn">社会</a>
-                <a href="#" class="matrix-btn">算数</a>
-                <a href="#" class="matrix-btn">理科</a>
-                <a href="#" class="matrix-btn">生活</a>
-                <a href="#" class="matrix-btn">音楽</a>
-                <a href="#" class="matrix-btn">図画工作</a>
-                <a href="#" class="matrix-btn">家庭</a>
-                <a href="#" class="matrix-btn">体育</a>
-                <a href="#" class="matrix-btn">外国語</a>
-                <a href="#" class="matrix-btn">道徳</a>
-                <a href="#" class="matrix-btn">チャレンジ</a>
-                <a href="#" class="matrix-btn">特別活動</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-keywords">
-            <span class="kw">国語〜外国語</span>
-            <span class="kw">総合・道徳・特別活動</span>
-            <span class="kw">年間指導計画</span>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="card-counter">従来：理論編・年間計画</span>
-        </div>
-      </article>
     </div>
+
+    <!-- 第5部：大きな枠＋表 -->
+    <div class="block-5th" id="subjects">
+      <div class="block-5th-header">
+        <div class="block-5th-title">第5部　教科別・領域別の指導計画</div>
+        <div class="block-5th-tag">理論編・年間指導計画</div>
+      </div>
+      <div class="block-5th-text">
+        各教科・領域の<strong>理論編</strong>と<strong>年間指導計画</strong>に，表から直接アクセスできます。
+      </div>
+
+      <div class="subject-table-wrapper">
+        <table class="subject-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>国語</th>
+              <th>社会</th>
+              <th>算数</th>
+              <th>理科</th>
+              <th>生活</th>
+              <th>音楽</th>
+              <th>図画工作</th>
+              <th>家庭</th>
+              <th>体育</th>
+              <th>外国語</th>
+              <th>道徳</th>
+              <th>チャレンジ</th>
+              <th>特別活動</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>理論編</td>
+              <td><a href="#" class="tbl-btn">国語</a></td>
+              <td><a href="#" class="tbl-btn">社会</a></td>
+              <td><a href="#" class="tbl-btn">算数</a></td>
+              <td><a href="#" class="tbl-btn">理科</a></td>
+              <td><a href="#" class="tbl-btn">生活</a></td>
+              <td><a href="#" class="tbl-btn">音楽</a></td>
+              <td><a href="#" class="tbl-btn">図画工作</a></td>
+              <td><a href="#" class="tbl-btn">家庭</a></td>
+              <td><a href="#" class="tbl-btn">体育</a></td>
+              <td><a href="#" class="tbl-btn">外国語</a></td>
+              <td><a href="#" class="tbl-btn">道徳</a></td>
+              <td><a href="#" class="tbl-btn">チャレンジ</a></td>
+              <td><a href="#" class="tbl-btn">特別活動</a></td>
+            </tr>
+            <tr>
+              <td>年間指導計画</td>
+              <td><a href="#" class="tbl-btn">国語</a></td>
+              <td><a href="#" class="tbl-btn">社会</a></td>
+              <td><a href="#" class="tbl-btn">算数</a></td>
+              <td><a href="#" class="tbl-btn">理科</a></td>
+              <td><a href="#" class="tbl-btn">生活</a></td>
+              <td><a href="#" class="tbl-btn">音楽</a></td>
+              <td><a href="#" class="tbl-btn">図画工作</a></td>
+              <td><a href="#" class="tbl-btn">家庭</a></td>
+              <td><a href="#" class="tbl-btn">体育</a></td>
+              <td><a href="#" class="tbl-btn">外国語</a></td>
+              <td><a href="#" class="tbl-btn">道徳</a></td>
+              <td><a href="#" class="tbl-btn">チャレンジ</a></td>
+              <td><a href="#" class="tbl-btn">特別活動</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </main>
 
