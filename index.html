@@ -1,170 +1,663 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>北海道教育大学附属旭川小学校 教育課程ポータル</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; line-height: 1.7; margin: 0; }
-    header { padding: 32px 16px; background: #f5f7fb; border-bottom: 1px solid #ddd; }
-    header h1 { margin: 0 0 8px; font-size: 1.6rem; }
-    header p { margin: 4px 0; }
-    .nav-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .nav-links a { padding: 6px 10px; border-radius: 999px; border: 1px solid #ccc; text-decoration: none; font-size: 0.9rem; }
-    main { padding: 24px 16px 48px; max-width: 960px; margin: 0 auto; }
-    section { margin-bottom: 32px; }
-    section h2 { margin-bottom: 8px; border-left: 4px solid #4b7bd8; padding-left: 8px; font-size: 1.3rem; }
-    section h3 { margin-top: 12px; margin-bottom: 4px; font-size: 1.05rem; }
-    .card { border: 1px solid #e0e0e0; border-radius: 12px; padding: 16px; margin-top: 8px; background: #fff; }
-    .btn { display: inline-block; margin-top: 8px; padding: 6px 12px; border-radius: 999px; border: 1px solid #4b7bd8; color: #4b7bd8; text-decoration: none; font-size: 0.9rem; }
-    .badge { display: inline-block; font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; background: #eef2ff; margin-bottom: 4px; }
-    footer { padding: 16px; font-size: 0.8rem; color: #666; border-top: 1px solid #eee; text-align: center; }
+    :root {
+      --bg: #f4f6fb;
+      --bg-alt: #ffffff;
+      --primary: #2563eb;
+      --primary-soft: #e0ebff;
+      --accent: #16a34a;
+      --text-main: #1f2933;
+      --text-sub: #6b7280;
+      --border-soft: #e2e8f0;
+      --chip-bg: #eef2ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(circle at top, #e0ecff 0, #f4f6fb 45%, #f4f6fb 100%);
+    }
+
+    header {
+      padding: 24px 16px 32px;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 40%, #0ea5e9 100%);
+      border-radius: 20px;
+      padding: 24px 20px;
+      color: #f9fbff;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      border: 16px solid rgba(219, 234, 254, 0.35);
+    }
+
+    .hero-main {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.25);
+      font-size: 0.75rem;
+    }
+
+    .hero-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #bbf7d0;
+    }
+
+    .hero-title {
+      margin: 10px 0 4px;
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-sub {
+      margin: 4px 0 14px;
+      font-size: 0.95rem;
+      color: #e5edff;
+    }
+
+    .hero-kv {
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.35);
+      display: inline-block;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-main {
+      text-decoration: none;
+      background: #f9fafb;
+      color: #1d4ed8;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-main span.icon {
+      font-size: 1rem;
+    }
+
+    .btn-sub {
+      text-decoration: none;
+      color: #e5edff;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(191, 219, 254, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-sub span.icon {
+      font-size: 0.95rem;
+    }
+
+    .hero-links {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .hero-link-chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.3);
+      border: 1px solid rgba(191, 219, 254, 0.4);
+    }
+
+    .hero-meta {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: #dbeafe;
+    }
+
+    main {
+      padding: 0 16px 40px;
+    }
+
+    .main-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      margin-top: -10px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 6px 2px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .section-heading p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        border-color 0.12s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      color: #3730a3;
+      white-space: nowrap;
+    }
+
+    .card-body {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+
+    .card-keywords {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .kw {
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .card-footer {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+
+    .card-link {
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+    }
+
+    .card-counter {
+      color: var(--text-sub);
+      font-size: 0.75rem;
+    }
+
+    .subgrid {
+      margin-top: 18px;
+    }
+
+    .subgrid h3 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+    }
+
+    .subgrid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .mini-card {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px dashed #cbd5f5;
+      background: #eff6ff;
+      font-size: 0.78rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mini-card-title {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #1d4ed8;
+    }
+
+    .mini-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mini-tag {
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #dbeafe;
+    }
+
+    footer {
+      max-width: 1080px;
+      margin: 20px auto 8px;
+      padding: 8px 16px 16px;
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      text-align: right;
+    }
+
+    @media (min-width: 880px) {
+      .hero-inner {
+        padding: 26px 32px 26px;
+      }
+      .hero-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+        gap: 24px;
+        align-items: center;
+      }
+      .hero-visual {
+        position: relative;
+        z-index: 1;
+        justify-self: flex-end;
+      }
+      .hero-bubble {
+        background: rgba(15, 23, 42, 0.16);
+        border-radius: 16px;
+        padding: 10px 12px;
+        font-size: 0.78rem;
+        margin-bottom: 8px;
+      }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .hero-stat-card {
+        border-radius: 14px;
+        background: rgba(15, 23, 42, 0.18);
+        padding: 10px 10px 8px;
+        font-size: 0.75rem;
+      }
+      .hero-stat-label {
+        color: #bfdbfe;
+        font-size: 0.72rem;
+      }
+      .hero-stat-value {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-inner {
+        border-radius: 0 0 20px 20px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
-
 <header>
-  <h1>北海道教育大学附属旭川小学校　教育課程ポータル</h1>
-  <p>よく見，よく聞き，よく思い，心も体もたくましい「主体的人間」の育成をめざして</p>
-  <div class="nav-links">
-    <a href="#philosophy">教育理念・学校のめざす姿</a>
-    <a href="#design">教育課程の編成方針</a>
-    <a href="#timetable">日課・授業時数</a>
-    <a href="#management">学校経営方針・年度の重点</a>
-    <a href="#subjects">教科別の指導計画</a>
-    <a href="#downloads">資料ダウンロード</a>
+  <div class="hero-inner">
+    <div class="hero-layout">
+      <div class="hero-main">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          教育課程 全体像
+        </div>
+        <h1 class="hero-title">
+          北海道教育大学附属旭川小学校<br />
+          教育課程ポータル
+        </h1>
+        <p class="hero-sub">
+          「よく見，よく聞き，よく思い」，心も体もたくましい主体的人間を育てるための
+          <strong>学校の“設計図”</strong>です。
+        </p>
+        <div class="hero-kv">
+          3つの子ども像：思いやる子 ／ つくりだす子 ／ やりとげる子
+        </div>
+        <div class="hero-actions">
+          <a href="#cards" class="btn-main">
+            <span class="icon">📚</span>
+            教育課程の全体を見る
+          </a>
+          <a href="#subjects" class="btn-sub">
+            <span class="icon">📘</span>
+            教科別計画へ
+          </a>
+        </div>
+        <div class="hero-links">
+          <span class="hero-link-chip">教育理念</span>
+          <span class="hero-link-chip">日課・授業時数</span>
+          <span class="hero-link-chip">学校経営方針</span>
+          <span class="hero-link-chip">年間指導計画</span>
+        </div>
+        <div class="hero-meta">
+          ※ 本ページは教育課程冊子（第1〜5章）および各教科資料をもとに構成しています。
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-bubble">
+          まずは「どんな学校か」「どんな時間割か」を
+          <strong>カードから直感的に</strong>確認できます。
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat-card">
+            <div class="hero-stat-label">教育課程の柱</div>
+            <div class="hero-stat-value">5部構成</div>
+            <div>理念／編成／時数／経営／教科</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-label">主な利用者</div>
+            <div class="hero-stat-value">教員・学生・保護者</div>
+            <div>誰でも全体像を把握しやすく</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
-
-  <!-- セクション１ -->
-  <section id="philosophy">
-    <span class="badge">第1部</span>
-    <h2>教育理念と学校のめざす姿</h2>
-
-    <div class="card">
-      <h3>教育理念・子ども像</h3>
-      <p>
-        本校は「主体的人間の形成」を総括目標とし，<br>
-        「思いやる子」「つくりだす子」「やりとげる子」の３つの子ども像をめざして
-        教育活動を構成しています。
-      </p>
-      <h3>学校のめざす姿</h3>
-      <ul>
-        <li>子どもが目を輝かせ，生き生きと学んでいる学校</li>
-        <li>教師が励まし合い，専門性を高め続ける学校</li>
-        <li>保護者や地域の期待に応え，信頼されている学校</li>
-      </ul>
-      <a href="#" class="btn">教育理念・学校像の詳細を見る</a>
+  <div class="main-inner" id="cards">
+    <div class="section-heading">
+      <h2>教育課程の全体構成</h2>
+      <p>知りたいテーマからカードをクリックして閲覧できます。</p>
     </div>
-  </section>
 
-  <!-- セクション２ -->
-  <section id="design">
-    <span class="badge">第2部</span>
-    <h2>教育課程の編成方針</h2>
+    <!-- メインカード 5枚 -->
+    <div class="card-grid">
+      <!-- 第1部 -->
+      <article class="card" id="philosophy">
+        <div>
+          <div class="card-header">
+            <div class="card-title">第1部　教育理念と学校のめざす姿</div>
+            <div class="card-tag">理念・子ども像</div>
+          </div>
+          <div class="card-body">
+            学校の<strong>根っこの考え方</strong>と，育てたい子ども像・学校像をまとめています。
+          </div>
+          <div class="card-keywords">
+            <span class="kw">総括目標</span>
+            <span class="kw">3つの子ども像</span>
+            <span class="kw">学校像・教師像</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="card-link">
+            詳細ページへ
+            <span>↗</span>
+          </a>
+          <span class="card-counter">旧：第1章・第3章</span>
+        </div>
+      </article>
 
-    <div class="card">
-      <h3>教育課程編成の基本構想</h3>
-      <p>
-        学習指導要領の基本方針，本校の教育研究の成果，学校評価から見えてきた課題を踏まえ，
-        教育課程の編成・実施・評価・改善のサイクルを構成しています。
-      </p>
-      <ul>
-        <li>法改正・答申等の趣旨の把握</li>
-        <li>地域・子どもの実態の把握</li>
-        <li>学校の教育目標の見直し</li>
-        <li>教科編・道徳・特別活動編・チャレンジ編・外国語活動編の構成</li>
-        <li>教育課程編成の評価と改善</li>
-      </ul>
-      <a href="#" class="btn">編成プロセスの詳細を見る</a>
+      <!-- 第2部 -->
+      <article class="card" id="design">
+        <div>
+          <div class="card-header">
+            <div class="card-title">第2部　教育課程編成の基本構想</div>
+            <div class="card-tag">つくり方</div>
+          </div>
+          <div class="card-body">
+            教育課程を<strong>どのような手順</strong>で設計し，見直しているかを示します。
+          </div>
+          <div class="card-keywords">
+            <span class="kw">編成プロセス</span>
+            <span class="kw">教科・道徳・特活</span>
+            <span class="kw">評価と改善</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="card-link">
+            詳細ページへ
+            <span>↗</span>
+          </a>
+          <span class="card-counter">旧：第2章</span>
+        </div>
+      </article>
+
+      <!-- 第3部 -->
+      <article class="card" id="timetable">
+        <div>
+          <div class="card-header">
+            <div class="card-title">第3部　年間授業時数と日課の構成</div>
+            <div class="card-tag">時間の設計</div>
+          </div>
+          <div class="card-body">
+            年間授業日数，週時数，行事と授業の<strong>時間のバランス</strong>を示しています。
+          </div>
+          <div class="card-keywords">
+            <span class="kw">年間授業日数</span>
+            <span class="kw">週時数配当</span>
+            <span class="kw">行事と打切り</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="card-link">
+            詳細ページへ
+            <span>↗</span>
+          </a>
+          <span class="card-counter">旧：第4章</span>
+        </div>
+      </article>
+
+      <!-- 第4部 -->
+      <article class="card" id="management">
+        <div>
+          <div class="card-header">
+            <div class="card-title">第4部　学校経営方針と年度の重点</div>
+            <div class="card-tag">運営・重点</div>
+          </div>
+          <div class="card-body">
+            今年度，学校として<strong>特に大切にすること</strong>を整理しています。
+          </div>
+          <div class="card-keywords">
+            <span class="kw">学校経営方針</span>
+            <span class="kw">年度の指導の重点</span>
+            <span class="kw">研修・安全</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="card-link">
+            詳細ページへ
+            <span>↗</span>
+          </a>
+          <span class="card-counter">旧：第3章・第5章</span>
+        </div>
+      </article>
+
+      <!-- 第5部 -->
+      <article class="card" id="subjects">
+        <div>
+          <div class="card-header">
+            <div class="card-title">第5部　教科別・領域別の指導計画</div>
+            <div class="card-tag">授業の計画</div>
+          </div>
+          <div class="card-body">
+            各教科の<strong>理論編・年間指導計画・単元構成</strong>をまとめています。
+          </div>
+          <div class="card-keywords">
+            <span class="kw">国語〜外国語</span>
+            <span class="kw">総合・道徳・特別活動</span>
+            <span class="kw">年間指導計画</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="card-link">
+            教科別ページへ
+            <span>↗</span>
+          </a>
+          <span class="card-counter">従来：理論編・年間計画</span>
+        </div>
+      </article>
     </div>
-  </section>
 
-  <!-- セクション３ -->
-  <section id="timetable">
-    <span class="badge">第3部</span>
-    <h2>年間授業時数と日課の構成</h2>
-
-    <div class="card">
-      <h3>年間授業日数・時数の考え方</h3>
-      <p>
-        年間授業日数の算定，土曜・日曜・祝日や長期休業の取り扱い，運動会や学芸発表会，
-        研究大会等の行事と授業時数の関係を整理し，曜日のバランスを考えた計画としています。
-      </p>
-      <h3>週時数と日課の工夫</h3>
-      <ul>
-        <li>各学年の週時数配当</li>
-        <li>クラブ活動・友の会・学級活動の位置付け</li>
-        <li>打切り時数・予備時数の設定</li>
-      </ul>
-      <a href="#" class="btn">日課・授業時数の詳細を見る</a>
+    <!-- サブグリッド：用途別の入口 -->
+    <div class="subgrid">
+      <h3>用途別のショートカット</h3>
+      <div class="subgrid-grid">
+        <div class="mini-card">
+          <div class="mini-card-title">新任・実習生向け</div>
+          <div>学校の全体像と授業づくりの考え方を，短時間で把握したい方向けの入口です。</div>
+          <div class="mini-card-tags">
+            <span class="mini-tag">第1部</span>
+            <span class="mini-tag">第2部</span>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">時間割・行事を確認したい</div>
+          <div>年間授業時数や日課，行事と授業の関係を一覧で確認できます。</div>
+          <div class="mini-card-tags">
+            <span class="mini-tag">第3部</span>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">今年度の重点を確認したい</div>
+          <div>学校経営方針と，今年度の重点項目を一覧で見たいときの入口です。</div>
+          <div class="mini-card-tags">
+            <span class="mini-tag">第4部</span>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">授業づくりに使いたい</div>
+          <div>教科ごとの理論編・年間指導計画・単元一覧に直接アクセスできます。</div>
+          <div class="mini-card-tags">
+            <span class="mini-tag">第5部</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <!-- セクション４ -->
-  <section id="management">
-    <span class="badge">第4部</span>
-    <h2>学校経営方針と年度の指導の重点</h2>
-
-    <div class="card">
-      <h3>学校経営方針</h3>
-      <ul>
-        <li>教職員の創意を尊重し，協働的な学校づくりを進める</li>
-        <li>危機管理体制を整え，安全で安心な学校を実現する</li>
-        <li>研究校・実習校としての使命を果たし，教育実践を発信する</li>
-      </ul>
-      <h3>年度の指導の重点（例）</h3>
-      <ul>
-        <li>「確かな学力」「豊かな心」「健康・体力」のバランスのとれた教育</li>
-        <li>特別支援教育の推進と個に応じた指導の充実</li>
-        <li>道徳教育・特別活動・総合的な学習の時間の充実</li>
-      </ul>
-      <a href="#" class="btn">年度方針の詳細を見る</a>
+    <!-- 資料ダウンロード -->
+    <div class="subgrid" id="downloads">
+      <h3>資料ダウンロード</h3>
+      <div class="subgrid-grid">
+        <div class="mini-card">
+          <div class="mini-card-title">教育課程 全体（PDF）</div>
+          <div>第1〜5部を一括して閲覧・印刷したいときに利用します。</div>
+          <div class="mini-card-tags">
+            <span class="mini-tag">冊子版</span>
+            <span class="mini-tag">PDF</span>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">教科別資料（PDF）</div>
+          <div>各教科の理論編・年間指導計画などをダウンロードできます。</div>
+          <div class="mini-card-tags">
+            <span class="mini-tag">教科別</span>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">年間行事・研究関連</div>
+          <div>年間行事計画や研究紀要など，学校全体の資料です。</div>
+          <div class="mini-card-tags">
+            <span class="mini-tag">行事</span>
+            <span class="mini-tag">研究</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <!-- セクション５ -->
-  <section id="subjects">
-    <span class="badge">第5部</span>
-    <h2>教科別・領域別の指導計画</h2>
-
-    <div class="card">
-      <p>
-        各教科・領域ごとに，「理論編（教科観・育てたい資質・授業の基本）」と
-        「学年別年間指導計画」「単元・題材構成」等を掲載します。
-      </p>
-      <ul>
-        <li>国語／社会／算数／理科／生活</li>
-        <li>音楽／図工／家庭／体育／道徳</li>
-        <li>外国語活動／総合的な学習の時間／特別活動</li>
-      </ul>
-      <a href="#" class="btn">教科別ページへ</a>
-    </div>
-  </section>
-
-  <!-- セクション６ -->
-  <section id="downloads">
-    <span class="badge">資料</span>
-    <h2>資料ダウンロード</h2>
-
-    <div class="card">
-      <ul>
-        <li>教育課程 第1〜5部（PDF）</li>
-        <li>各教科 理論編・年間指導計画</li>
-        <li>年間行事計画・主要行事一覧</li>
-        <li>研究紀要・研究概要（必要に応じて）</li>
-      </ul>
-      <a href="#" class="btn">資料一覧を見る</a>
-    </div>
-  </section>
-
+  </div>
 </main>
 
 <footer>
-  <p>&copy; 北海道教育大学附属旭川小学校</p>
+  &copy; 北海道教育大学附属旭川小学校　教育課程ポータル
 </footer>
-
 </body>
 </html>
